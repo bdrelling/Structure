@@ -1,4 +1,4 @@
-// swift-tools-version:5.6
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -12,10 +12,10 @@ let package = Package(
     ],
     dependencies: [
         // 💧 Vapor
-        .package(url: "https://github.com/vapor/vapor", .upToNextMajor(from: "4.63.0")),
-        .package(url: "https://github.com/vapor/fluent", .upToNextMajor(from: "4.4.0")),
+        .package(url: "https://github.com/vapor/vapor", from: "4.0.0"),
+        .package(url: "https://github.com/vapor/fluent", from: "4.4.0"),
         // Development
-        .package(url: "https://github.com/swift-kipple/Tools", from: "0.2.1"),
+        .package(url: "https://github.com/swift-kipple/Tools", from: "0.2.5"),
     ],
     targets: [
         .target(

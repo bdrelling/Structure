@@ -26,5 +26,11 @@ let package = Package(
                 .product(name: "Vapor", package: "vapor"),
             ]
         ),
+        .testTarget(
+            name: "VaporExtensionsTests",
+            dependencies: [
+                .target(name: "VaporExtensions"),
+            ]
+        )
     ]
 )

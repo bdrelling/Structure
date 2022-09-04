@@ -4,7 +4,7 @@ import KippleCore
 import Vapor
 
 public extension Request {
-    static let subdomainRegex = #"([a-z0-9|-]+\.)*[a-z0-9|-]+\.[a-z]+"#
+    static let subdomainRegex = #"([a-z0-9|-]+)\.[a-z0-9|-]+\.[a-z]+"#
 
     var host: String? {
         self.headers.first(name: .host)

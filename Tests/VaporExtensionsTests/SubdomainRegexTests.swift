@@ -6,7 +6,11 @@ import XCTest
 
 final class SubdomainRegexTests: XCTestCase {
     func testNoMatches() {
-        let string = "briandrelling.com"
+        let string = [
+            "briandrelling.com",
+            "briandrelling.co.uk",
+            "briandrelling.local:8080",
+        ]
         let matches = string.captureGroups(for: Request.subdomainFromHostnameRegex)
 
         XCTAssertEqual(matches.count, 0)

@@ -2,6 +2,6 @@
 
 import Vapor
 
-extension Environment {
+public extension Environment {
     static let local: Self = .custom(name: "local")
 }

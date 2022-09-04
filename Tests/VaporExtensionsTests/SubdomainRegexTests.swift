@@ -7,16 +7,23 @@ import XCTest
 final class SubdomainRegexTests: XCTestCase {
     func testNoMatches() {
         let string = "briandrelling.com"
-        let matches = string.captureGroups(for: Request.subdomainRegex)
+        let matches = string.captureGroups(for: Request.subdomainFromHostnameRegex)
 
         XCTAssertEqual(matches.count, 0)
     }
 
     func testSingleMatch() throws {
-        let string = "www.briandrelling.com"
-        let matches = string.captureGroups(for: Request.subdomainRegex)
+        let strings = [
+            "www.briandrelling.com",
+            "www.briandrelling.co.uk",
+            "www.briandrelling.local:8080",
+        ]
 
-        XCTAssertEqual(matches.count, 1)
-        XCTAssertEqual(matches, ["www"])
+        for string in strings {
+            let matches = string.captureGroups(for: Request.subdomainFromHostnameRegex)
+
+            XCTAssertEqual(matches.count, 1)
+            XCTAssertEqual(matches, ["www"])
+        }
     }
 }

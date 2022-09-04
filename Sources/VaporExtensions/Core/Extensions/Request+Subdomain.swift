@@ -3,13 +3,13 @@
 import Vapor
 
 extension Request {
-    static let subdomainRegex = #"^([a-z0-9|-]+)\.[a-z0-9|-]+\.[a-z]+"#
+    static let subdomainFromHostnameRegex = #"^([a-zA-Z0-9\-]+)\.[a-zA-Z0-9\-\.:]*[0-9]{0,5}"#
 
     var host: String? {
         self.headers.first(name: .host)
     }
 
     public var subdomain: String? {
-        self.host?.firstCaptureGroup(for: Self.subdomainRegex)
+        self.host?.firstCaptureGroup(for: Self.subdomainFromHostnameRegex)
     }
 }

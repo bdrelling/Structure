@@ -1,5 +1,7 @@
 // Copyright © 2022 Brian Drelling. All rights reserved.
 
+import Foundation
+
 extension String {
     func replacing(pattern: String, with replacement: String = "") -> String {
         do {

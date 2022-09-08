@@ -3,7 +3,9 @@
 import Vapor
 
 public extension Request {
-    var host: String? {
-        self.headers.first(name: .host)
+    internal static let subdomainFromHostnameRegex = #"^([a-zA-Z0-9\-]+)\.[a-zA-Z0-9\-\.:]*[0-9]{0,5}"#
+
+    var subdomain: String? {
+        self.host?.firstCaptureGroup(for: Self.subdomainFromHostnameRegex)
     }
 }

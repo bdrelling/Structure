@@ -11,6 +11,6 @@ jobs:
     secrets: inherit
     with:
       scheme: VaporExtensions
-      subcommand: build
+      subcommand: test
       platforms: macOS Linux
       swift-versions: 5.5 5.6

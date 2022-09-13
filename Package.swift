@@ -11,7 +11,7 @@ let package = Package(
         .library(name: "Structure", targets: ["Structure"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/bdrelling/PlotVapor", from: "0.4.1"),
+        .package(url: "https://github.com/bdrelling/PlotVapor", from: "0.4.3"),
         .package(url: "https://github.com/swift-kipple/Core", from: "0.10.2"),
         .package(url: "https://github.com/vapor/vapor", from: "4.0.0"),
         .package(url: "https://github.com/vapor/fluent", from: "4.4.0"),

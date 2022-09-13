@@ -1,10 +1,12 @@
+// Copyright © 2022 Brian Drelling. All rights reserved.
+
 import Plot
 import Vapor
 
 public struct ErrorMessage: Component {
     public let title: String
     public let message: String
-    
+
     public var body: Component {
         Div {
             H1(self.title)
@@ -12,7 +14,7 @@ public struct ErrorMessage: Component {
             Link("Take me back home!", url: "/")
         }
     }
-    
+
     /// Initializes an `ErrorPage` with a given title and message.
     /// - Parameters:
     ///   - title: The title to display, both for the URL bar and the view.
@@ -21,7 +23,7 @@ public struct ErrorMessage: Component {
         self.title = title
         self.message = message
     }
-    
+
     /// Initializes an `ErrorPage` using defaults based off of an `HTTPResponseStatus`.
     /// If the `HTTPResponseStatus` does not have valid defaults, the initializer will return `nil`.
     /// - Parameter status: The `HTTPResponseStatus` to fetch defaults for.
@@ -37,4 +39,3 @@ public struct ErrorMessage: Component {
         }
     }
 }
-

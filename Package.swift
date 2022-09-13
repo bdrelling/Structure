@@ -3,23 +3,23 @@
 import PackageDescription
 
 let package = Package(
-    name: "VaporExtensions",
+    name: "Structure",
     platforms: [
         .macOS(.v12),
     ],
     products: [
-        .library(name: "VaporExtensions", targets: ["VaporExtensions"]),
+        .library(name: "Structure", targets: ["Structure"]),
     ],
     dependencies: [
         .package(url: "https://github.com/swift-kipple/Core", from: "0.10.2"),
         .package(url: "https://github.com/vapor/vapor", from: "4.0.0"),
         .package(url: "https://github.com/vapor/fluent", from: "4.4.0"),
         // Development
-        .package(url: "https://github.com/swift-kipple/Tools", from: "0.3.1"),
+        .package(url: "https://github.com/swift-kipple/Tools", from: "0.3.0"),
     ],
     targets: [
         .target(
-            name: "VaporExtensions",
+            name: "Structure",
             dependencies: [
                 .product(name: "Fluent", package: "fluent"),
                 .product(name: "KippleCore", package: "Core"),

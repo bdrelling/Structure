@@ -16,7 +16,6 @@ let package = Package(
         .package(url: "https://github.com/swift-kipple/Core", from: "0.10.2"),
         .package(url: "https://github.com/vapor/vapor", from: "4.65.1"),
         .package(url: "https://github.com/vapor/fluent", from: "4.5.0"),
-        .package(url: "https://github.com/vapor-community/vapor-sitemap", from: "1.1.0"),
         // Development
         .package(url: "https://github.com/swift-kipple/Tools", from: "0.3.6"),
     ],
@@ -29,7 +28,6 @@ let package = Package(
                 .product(name: "KippleCore", package: "Core"),
                 .product(name: "PlotVapor", package: "PlotVapor"),
                 .product(name: "Vapor", package: "vapor"),
-                .product(name: "VaporSitemap", package: "vapor-sitemap"),
             ]
         )
     ]

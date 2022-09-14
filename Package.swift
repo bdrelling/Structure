@@ -12,21 +12,26 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/bdrelling/PlotVapor", from: "0.4.3"),
+        .package(url: "https://github.com/JohnSundell/Ink", from: "0.5.1"),
         .package(url: "https://github.com/swift-kipple/Core", from: "0.10.2"),
-        .package(url: "https://github.com/vapor/vapor", from: "4.0.0"),
-        .package(url: "https://github.com/vapor/fluent", from: "4.4.0"),
+        .package(url: "https://github.com/vapor/vapor", from: "4.65.1"),
+        .package(url: "https://github.com/vapor/fluent", from: "4.5.0"),
+        .package(url: "https://github.com/vapor-community/vapor-sitemap", from: "1.1.0"),
         // Development
-        .package(url: "https://github.com/swift-kipple/Tools", from: "0.3.0"),
+        .package(url: "https://github.com/swift-kipple/Tools", from: "0.3.6"),
     ],
     targets: [
         .target(
             name: "Structure",
             dependencies: [
                 .product(name: "Fluent", package: "fluent"),
+                .product(name: "Ink", package: "Ink"),
                 .product(name: "KippleCore", package: "Core"),
                 .product(name: "PlotVapor", package: "PlotVapor"),
                 .product(name: "Vapor", package: "vapor"),
+                .product(name: "VaporSitemap", package: "vapor-sitemap"),
             ]
         )
     ]
 )
+

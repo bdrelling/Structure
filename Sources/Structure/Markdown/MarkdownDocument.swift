@@ -30,11 +30,11 @@ public struct MarkdownDocument: Equatable {
     public var readingTimeFormatted: String {
         "\(self.readingTime) min read"
     }
-    
+
     private init(
         title: String,
         slug: String,
-        metadata: [String : String],
+        metadata: [String: String],
         html: String,
         markdownText: String,
         readingTime: Int
@@ -46,7 +46,7 @@ public struct MarkdownDocument: Equatable {
         self.markdownText = markdownText
         self.readingTime = readingTime
     }
-    
+
     private init(slug: String, markdown: Ink.Markdown, text: String) {
         self.init(
             title: markdown.metadata["title"] ?? markdown.title ?? slug,

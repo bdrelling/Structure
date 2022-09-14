@@ -4,7 +4,7 @@ import Vapor
 import VaporSitemap
 
 public extension Application {
-    private func configureSitemap(baseURL: String, paths: [String]) throws {
+    func configureSitemap(baseURL: String, paths: [String]) {
         // creates a dynamic sitemap
         self.middleware.use(SitemapMiddleware(
             isSitemap: { req in

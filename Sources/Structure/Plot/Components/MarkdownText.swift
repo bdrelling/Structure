@@ -3,7 +3,7 @@
 import Ink
 import Plot
 
-struct Markdown: Component {
+struct MarkdownText: Component {
     private let html: String
 
     var body: Component {

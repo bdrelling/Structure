@@ -54,6 +54,8 @@ function setTheme(theme, shouldStore = false) {
 function setThemeColor() {
     // Get the intended body background color.
     let backgroundColor = window.getComputedStyle(document.documentElement).getPropertyValue('background-color');
+
+    console.log(`Setting <meta name="theme=color"> tag content to '${backgroundColor}'.`)
     
     // Update the <meta> theme-color attribute to match the theme.
     let themeColorTag = document.querySelector('head meta[name="theme-color"]')

@@ -3,14 +3,14 @@
 import Ink
 import Plot
 
-struct MarkdownText: Component {
+public struct MarkdownText: Component {
     private let html: String
 
-    var body: Component {
+    public var body: Component {
         Text(self.html)
     }
 
-    init(_ markdown: String) {
+    public init(_ markdown: String) {
         self.html = MarkdownParser.custom.html(from: markdown)
     }
 }

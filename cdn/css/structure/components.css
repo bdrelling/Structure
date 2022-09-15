@@ -66,3 +66,18 @@ button.toggle-theme:hover {
 [data-theme="dark"] button.toggle-theme:hover {
     color: var(--yellow);
 }
+
+/* Theme Compatibility */
+
+/* Dark is our default theme, so we only need to tweak light-mode-only. */
+.light-mode-only {
+    display: none;
+}
+
+[data-theme="light"] .light-mode-only {
+    display: initial;
+}
+
+[data-theme="light"] .dark-mode-only {
+    display: none;
+}

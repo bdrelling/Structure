@@ -33,7 +33,7 @@ public struct DefaultHeadContent: Component {
 
             // Scripts
             if self.shouldDetectTheme {
-                Script(cdnPath: "structure/detect_theme.js")
+                Script(cdnPath: "structure/detect_theme.min.js")
             }
 
             // No Script -- For when JavaScript is disabled or unable to load.

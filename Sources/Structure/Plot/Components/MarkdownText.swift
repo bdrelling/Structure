@@ -7,7 +7,7 @@ public struct MarkdownText: Component {
     private let html: String
 
     public var body: Component {
-        Text(self.html)
+        Span(html: self.html)
     }
 
     public init(_ markdown: String) {

@@ -51,9 +51,14 @@ public struct DefaultHeadContent: Component {
                 HeadLink(canonicalURL, relationship: .canonical)
             }
 
-            // Theme Color
-            for themeColor in self.themeColors {
-                Meta(themeColor: themeColor.color, colorScheme: themeColor.colorScheme)
+            // Theme Colors
+            if !self.themeColors.isEmpty {
+                for themeColor in self.themeColors {
+                    Meta(themeColor: themeColor.color, colorScheme: themeColor.colorScheme)
+                }
+            } else if self.shouldDetectTheme {
+                // If no theme color was provided, leave an empty one for our detect_theme.js script, assuming theme detection is enabled.
+                Meta(name: "theme-color")
             }
         }
     }

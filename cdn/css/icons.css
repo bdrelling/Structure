@@ -1,0 +1,27 @@
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css');
+
+/* Normalize the <i> tag for icon usage. */
+
+i[class*="icon-"] {
+    display: inline-block;
+    font-family: initial;
+    font-style: normal;
+    line-height: 1.1em;
+}
+
+.icon-external-link::before {
+    content: '\2191';
+    display: inline-block;
+    margin-left: 0.2em;
+    position: relative;
+    top: -0.2em;
+    transform: rotate(45deg);
+}
+
+/* Star */
+
+.icon-star::before {
+    content: '\2605';
+    display: inline-block;
+    font-size: 1.1em;
+}

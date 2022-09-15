@@ -27,14 +27,13 @@ public struct DefaultHeadContent: Component {
                 HeadLink("/images/favicon_180.png", relationship: .appleTouchIcon, sizes: "180x180")
             }
 
-            // Stylesheets
             if let primaryStyleSheet = self.primaryStyleSheet {
                 StyleSheet(primaryStyleSheet)
             }
 
             // Scripts
             if self.shouldDetectTheme {
-                Script("/scripts/detect_theme.js")
+                Script("https://cdn.jsdelivr.net/gh/bdrelling/Structure@main/cdn/js/structure/detect_theme.js")
             }
 
             // No Script -- For when JavaScript is disabled or unable to load.

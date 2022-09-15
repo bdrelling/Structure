@@ -1,0 +1,142 @@
+/* PrismJS 1.26.0
+https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+bash+c+json+objectivec+ruby+swift+yaml */
+
+:root {
+    --code-background: #2f2f34;
+    --text-color: #67b7a4;
+    --selection: #c5c5c5;
+    --comment: #6c7986;
+    --type: #5dd8ff;
+    --class-name: #9ef1dd;
+    --string: #fc6a5D;
+    --number: #d0bf69;
+    --variable: #fff;
+    --function: #67b7a4;
+    --keyword: #fc5fa3;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+    text-shadow: none;
+    color: var(--text-color);
+    background: 0 0;
+    font-family: Menlo, monospace;
+    font-size: 0.9rem;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+    font-weight: 500;
+    -webkit-font-smoothing: subpixel-antialiased;
+}
+
+code[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+pre[class*='language-']::-moz-selection {
+    background-color: var(--selection);
+}
+
+code[class*='language-'] ::selection,
+code[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+pre[class*='language-']::selection {
+    background-color: var(--selection);
+}
+
+pre[class*='language-'] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+}
+
+:not(pre)>code[class*='language-'],
+pre[class*='language-'] {
+    background: var(--code-background);
+}
+
+:not(pre)>code[class*='language-'] {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+}
+
+.token.cdata,
+.token.comment,
+.token.doctype,
+.token.prolog {
+    color: var(--comment);
+}
+
+.token.punctuation {
+    color: var(--comment);
+}
+
+.token.boolean,
+.token.constant,
+.token.deleted,
+.token.number,
+.token.property,
+.token.symbol,
+.token.tag {
+    color: var(--type);
+}
+
+.token.number {
+    color: var(--number);
+}
+
+.token.attr-name,
+.token.builtin,
+.token.char,
+.token.inserted,
+.token.selector,
+.token.important,
+.token.regex,
+.token.variable {
+    color: var(--variable);
+}
+
+.token.string {
+    color: var(--string);
+}
+
+.language-css .token.string,
+.style .token.string,
+.token.entity,
+.token.operator,
+.token.url {
+    color: white;
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+    color: var(--keyword);
+}
+
+.token.function {
+    color: var(--function);
+}
+
+.token.class-name {
+    color: var(--class-name);
+}
+
+.token.bold,
+.token.important {
+    font-weight: 700;
+}
+
+.token.entity {
+    cursor: help;
+}

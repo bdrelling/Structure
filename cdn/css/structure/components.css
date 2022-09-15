@@ -55,7 +55,7 @@ button.toggle-theme.fixed {
 }
 
 button.toggle-theme:hover {
-    color: var(--button-background-color-highlighted);
+    color: var(--accent-color);
     cursor: pointer;
 }
 

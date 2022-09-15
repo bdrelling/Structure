@@ -3,8 +3,9 @@
 import PlotVapor
 
 public extension Script {
-    init(cdnURL: String = "https://cdn.jsdelivr.net/gh/bdrelling/Structure/cdn/js", cdnPath path: String) {
+    /// Initializes a `<script>` element pointed to the Structure CDN.
+    init(tag: String = "latest", cdnPath path: String) {
         let path = path.trimmingSlashes()
-        self.init("\(cdnURL)/\(path)")
+        self.init("/cdn/js/\(path)")
     }
 }

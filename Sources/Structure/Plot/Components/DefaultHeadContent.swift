@@ -27,16 +27,19 @@ public struct DefaultHeadContent: Component {
                 HeadLink("/images/favicon_180.png", relationship: .appleTouchIcon, sizes: "180x180")
             }
 
+            // StyleSheets
+            StyleSheet(cdnPath: "structure/structure.css")
+
             if let primaryStyleSheet = self.primaryStyleSheet {
                 StyleSheet(primaryStyleSheet)
             }
 
             // Scripts
             if self.shouldDetectTheme {
-                Script(cdnPath: "structure/detect_theme.min.js")
+                Script(cdnPath: "structure/detect_theme.js")
             }
 
-            // No Script -- For when JavaScript is disabled or unable to load.
+            // No Script (for when JavaScript is disabled or unable to load)
             NoScript {
                 Style(".js-only { display: none !important; }")
             }
@@ -57,7 +60,8 @@ public struct DefaultHeadContent: Component {
                     Meta(themeColor: themeColor.color, colorScheme: themeColor.colorScheme)
                 }
             } else if self.shouldDetectTheme {
-                // If no theme color was provided, leave an empty one for our detect_theme.js script, assuming theme detection is enabled.
+                // If no theme color was provided, leave a placeholder element for our detect_theme.js script, assuming theme detection is enabled.
+                // TODO: Make the detect_theme.js script handle this by itself!
                 Meta(name: "theme-color")
             }
         }

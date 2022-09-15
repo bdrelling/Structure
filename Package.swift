@@ -28,8 +28,18 @@ let package = Package(
                 .product(name: "KippleCore", package: "Core"),
                 .product(name: "PlotVapor", package: "PlotVapor"),
                 .product(name: "Vapor", package: "vapor"),
+            ],
+            resources: [
+                .copy("Resources/css"),
+                .copy("Resources/js"),
             ]
-        )
+        ),
+        .testTarget(
+            name: "StructureTests",
+            dependencies: [
+                .target(name: "Structure"),
+            ]
+        ),
     ]
 )
 

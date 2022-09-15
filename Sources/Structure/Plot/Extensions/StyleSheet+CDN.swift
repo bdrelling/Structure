@@ -3,8 +3,9 @@
 import PlotVapor
 
 public extension StyleSheet {
-    init(cdnURL: String = "https://cdn.jsdelivr.net/gh/bdrelling/Structure/cdn/css", cdnPath path: String) {
+    /// Initializes a `<style>` element pointed to the Structure CDN.
+    init(tag: String = "latest", cdnPath path: String) {
         let path = path.trimmingSlashes()
-        self.init("\(cdnURL)/\(path)")
+        self.init("/cdn/css/\(path)")
     }
 }

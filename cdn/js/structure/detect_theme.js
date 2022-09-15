@@ -10,6 +10,11 @@ if (localStorage.getItem('theme')) {
     watchColorScheme('light');
 }
 
+// After the document loads, ensure we've set the <meta name="theme-color"> tag appropriately.
+window.onload = function() {
+    setThemeColor()
+}
+
 // FUNCTIONS
 
 // Returns the theme set as the data-theme.
@@ -35,19 +40,25 @@ function setTheme(theme, shouldStore = false) {
     // Apply the theme as a data attribute.
     document.documentElement.setAttribute('data-theme', theme);
     
-    // Get the intended body background color.
-    let backgroundColor = window.getComputedStyle(document.documentElement).getPropertyValue('--body-background-color');
-    
-    // Update the <meta> theme-color attribute to match the theme.
-    let themeColorTag = document.querySelector('head meta[name="theme-color"]')
-    if (themeColorTag) {
-        themeColorTag.setAttribute('content', backgroundColor)
-    }
+    // Set the theme color for supporting browsers.
+    setThemeColor();
 
     // Store the theme, if applicable.
     if (shouldStore) {
         console.log(`Storing theme: ${theme}`);
         localStorage.setItem('theme', theme);
+    }
+}
+
+// Sets the <meta name="theme-color"> tag content the background color.
+function setThemeColor() {
+    // Get the intended body background color.
+    let backgroundColor = window.getComputedStyle(document.documentElement).getPropertyValue('background-color');
+    
+    // Update the <meta> theme-color attribute to match the theme.
+    let themeColorTag = document.querySelector('head meta[name="theme-color"]')
+    if (themeColorTag) {
+        themeColorTag.setAttribute('content', backgroundColor)
     }
 }
 

@@ -32,6 +32,43 @@
     display: initial;
 }
 
+/* Article Feed */
+
+.article-feed .article-feed-item {
+    color: var(--body-text-color-muted);
+    margin-bottom: 1.5rem;
+}
+
+.article-feed .article-feed-item .title {
+    font-family: var(--title-font-family);
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Article */
+
+.article header {
+    text-align: center;
+    margin: 6rem 1.5rem;
+}
+
+.article header .title {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.article header .tagline {
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin-top: 1.5rem;
+}
+
+/* Tags */
+
+.tag-separator {
+    padding: 0 5px;
+}
+
 /* Splash */
 
 .container.splash .content {

@@ -1,6 +1,7 @@
 // Copyright © 2022 Brian Drelling. All rights reserved.
 
 import Foundation
+import PlotVapor
 import Vapor
 
 public final class ResourceManager {
@@ -9,6 +10,8 @@ public final class ResourceManager {
     /// Whether or not our resources should be cached.
     private let shouldCache: Bool
 
+    #warning("Is it possible that this cache could be too large?")
+    #warning("Maybe split the cache into markdown, html, remote, etc?")
     /// A dictionary of local files that have been fetched previously and cached for performance optimization.
     /// Keys are slugs (eg. "some-file-name"),, values are the raw file contents.
     private var cachedLocalFiles: [String: String] = [:]
@@ -128,9 +131,41 @@ public final class ResourceManager {
     public func clearRemoteCache() {
         self.cachedRemoteFiles = [:]
     }
+
+    public func markdownPage<Page>(_ page: Page.Type, slug: String, bundle: Bundle, directory: String? = nil) throws -> Page where Page: MarkdownDocumentRendering {
+        let markdown = try self.markdown(slug: slug, bundle: bundle, directory: directory)
+
+        return .init(markdown: markdown)
+    }
+
+    public func markdownPage<Page>(_ page: Page.Type, slug: String, from url: String, using client: Client) async throws -> Page where Page: MarkdownDocumentRendering {
+        let markdown = try await self.markdown(slug: slug, from: url, using: client)
+
+        return .init(markdown: markdown)
+    }
+
+    public func htmlPage<Page>(_ page: Page.Type, slug: String, bundle: Bundle, directory: String? = nil) throws -> Page where Page: HTMLRendering {
+        let html = try self.html(slug: slug, bundle: bundle, directory: directory)
+
+        return .init(html: html)
+    }
+
+    public func htmlPage<Page>(_ page: Page.Type, slug: String, from url: String, using client: Client) async throws -> Page where Page: HTMLRendering {
+        let html = try await self.html(slug: slug, from: url, using: client)
+
+        return .init(html: html)
+    }
 }
 
 // MARK: - Supporting Types
+
+public protocol HTMLRendering: PlotVapor.Page {
+    init(html: String)
+}
+
+public protocol MarkdownDocumentRendering: PlotVapor.Page {
+    init(markdown: MarkdownDocument)
+}
 
 public enum FileExtension: String {
     case html

@@ -10,19 +10,11 @@ public struct ConstructionSign: Component {
     so parts of the site may appear broken for the time being.
     """
 
-    private var isUnderConstruction: Bool = {
-        ProcessInfo.processInfo.environment["UNDER_CONSTRUCTION"] == "true"
-    }()
-
     @ComponentBuilder var content: ContentProvider
 
-    public var body: Component {
-        ComponentGroup {
-            if self.isUnderConstruction {
-                Div(content: self.content)
-                    .class("construction-sign")
-            }
-        }
+    @ComponentBuilder  public var body: Component {
+        Div(content: self.content)
+            .class("construction-sign")
     }
 
     public init(@ComponentBuilder content: @escaping ContentProvider) {

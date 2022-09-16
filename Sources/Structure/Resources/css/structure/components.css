@@ -5,13 +5,14 @@
     display: flex;
     flex-direction: row;
     font-size: 1.2em;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-bottom: 3rem;
     padding: 1.5rem 0;
 }
 
 .navbar .horizontal-menu {
     display: flex;
+    flex-grow: 1;
     gap: 0.5rem;
 }
 
@@ -21,17 +22,22 @@
     padding: 0.2em 0;
 }
 
-.navbar .horizontal-menu .divider:last-child {
+/* Hide the last divider by default, which is the behavior we want in the majority of instances. */
+.navbar .horizontal-menu .divider:last-child  {
     display: none;
+}
+
+/* When the last element is a link, such as for an article page, display the divider. */
+.navbar .horizontal-menu a[href]:not([href=""]):last-of-type + .divider  {
+    display: initial;
 }
 
 /* Splash */
 
-.splash {
+.container.splash .content {
     display: flex;
     align-items: center;
     flex-direction: column;
-    min-height: 100%;
     justify-content: center;
     text-align: center;
 }

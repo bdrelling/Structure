@@ -1,3 +1,4 @@
+@import 'theme.css';
 @import 'components.css';
 @import 'icons.css';
 
@@ -7,7 +8,7 @@ html {
     height: 100%;
 }
 
-/* Body and Container */
+/* Body */
 
 body {
     font-size: 1em;
@@ -16,9 +17,21 @@ body {
     margin: 0;
 }
 
-body>.container {
+/* Container */
+
+.container {
     height: 100%;
     margin: 0 1.5rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.container > .content {
+    flex-grow: 1;
 }
 
 /* Headings */

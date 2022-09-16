@@ -25,8 +25,8 @@ public final class ResourceManager {
 
     // MARK: Methods
 
-    public func markdown(slug: String, in bundle: Bundle) throws -> MarkdownDocument {
-        let text = try self.contentsOfFile(slug: slug, fileExtension: .markdown, in: bundle)
+    public func markdown(slug: String, bundle: Bundle, directory: String? = nil) throws -> MarkdownDocument {
+        let text = try self.contentsOfFile(slug: slug, fileExtension: .markdown, bundle: bundle, directory: directory)
 
         return .init(slug: slug, text: text)
     }
@@ -37,16 +37,16 @@ public final class ResourceManager {
         return .init(slug: slug, text: text)
     }
 
-    public func html(slug: String, in bundle: Bundle) throws -> String {
-        try self.contentsOfFile(slug: slug, fileExtension: .html, in: bundle)
+    public func html(slug: String, bundle: Bundle, directory: String? = nil) throws -> String {
+        try self.contentsOfFile(slug: slug, fileExtension: .html, bundle: bundle, directory: directory)
     }
 
     public func html(slug: String, from url: String, using client: Client) async throws -> String {
         try await self.contentsOfRemoteFile(slug: slug, from: url, using: client)
     }
 
-    public func files(withExtension fileExtension: FileExtension, in bundle: Bundle) throws -> [MarkdownDocument] {
-        try bundle.paths(forResourcesOfType: fileExtension.rawValue, inDirectory: nil)
+    public func files(withExtension fileExtension: FileExtension, bundle: Bundle, directory: String? = nil) throws -> [MarkdownDocument] {
+        try bundle.paths(forResourcesOfType: fileExtension.rawValue, inDirectory: directory)
             .compactMap { path in
                 guard var slug = path.pathComponents.last?.description else {
                     return nil
@@ -62,7 +62,12 @@ public final class ResourceManager {
             }
     }
 
-    public func contentsOfFile(slug: String, fileExtension: FileExtension, in bundle: Bundle) throws -> String {
+    public func contentsOfFile(slug: String, fileExtension: FileExtension, bundle: Bundle, directory: String? = nil) throws -> String {
+        // If the rest of our path contains slashes or file extensions, consider it invalid and throw an error.
+        guard !slug.contains("/"), !slug.contains(fileExtension.rawValue) else {
+            throw ResourceError.malformedSlug(slug)
+        }
+
         // Our URL slugs use hyphens, but our local files use underscores.
         // We also remove leading and trailing slashes.
         let slug = slug
@@ -74,7 +79,7 @@ public final class ResourceManager {
             return cachedFile
         }
 
-        guard let path = bundle.path(forResource: slug, ofType: fileExtension.rawValue, inDirectory: nil) else {
+        guard let path = bundle.path(forResource: slug, ofType: fileExtension.rawValue, inDirectory: directory) else {
             throw ResourceError.fileNotFound("\(slug).\(fileExtension.rawValue)")
         }
 
@@ -132,13 +137,13 @@ public enum FileExtension: String {
     case markdown = "md"
 }
 
-enum ResourceError: Error {
+public enum ResourceError: Error {
     case fileNotFound(_ slug: String)
     case malformedSlug(_ slug: String)
 }
 
 extension ResourceError: LocalizedError {
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case let .fileNotFound(slug):
             return "File with slug '\(slug)' not found."

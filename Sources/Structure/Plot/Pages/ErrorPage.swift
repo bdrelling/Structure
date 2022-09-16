@@ -4,28 +4,19 @@ import Plot
 import PlotVapor
 import Vapor
 
-public struct ErrorPage: DefaultPage {
-    public typealias Template = SplashTemplate
-
-    public let title: String
-    public let siteTitle: String? = nil
-    public let themeColors: [ThemeColor] = []
-    public let breadcrumbs: [Breadcrumb] = []
-    public let canonicalURL: String? = nil
-
+public struct ErrorPage: Page {
     public let message: ErrorMessage
 
-    public var head: Component {
-        DefaultHeadContent(page: self)
-    }
-
     public var body: Component {
-        self.message
+        StructurePage {
+            self.message
+        }
+        .class("splash")
+        .pageTitle(self.message.title)
     }
 
     public init(title: String, message: String) {
         self.message = .init(title: title, message: message)
-        self.title = title
     }
 
     public init?(_ status: HTTPResponseStatus) {
@@ -34,6 +25,5 @@ public struct ErrorPage: DefaultPage {
         }
 
         self.message = message
-        self.title = message.title
     }
 }

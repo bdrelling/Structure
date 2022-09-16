@@ -14,7 +14,7 @@ public struct MarkdownDocument: Equatable {
     public let slug: String
 
     /// A dictionary of metadata from the markdown file.
-    public let metadata: [String: String]
+    public let metadata: Metadata
 
     /// The full HTML of the article.
     /// This is parsed from the raw markdown text.
@@ -34,7 +34,7 @@ public struct MarkdownDocument: Equatable {
     private init(
         title: String,
         slug: String,
-        metadata: [String: String],
+        metadata: Metadata,
         html: String,
         markdownText: String,
         readingTime: Int
@@ -61,5 +61,35 @@ public struct MarkdownDocument: Equatable {
     public init(slug: String, text: String) {
         let markdown = MarkdownParser.custom.parse(text)
         self.init(slug: slug, markdown: markdown, text: text)
+    }
+}
+
+// MARK: - Supporting Types
+
+public extension MarkdownDocument {
+    typealias Metadata = [String: String]
+}
+
+// MARK: - Extensions
+
+public extension MarkdownDocument.Metadata {
+    func bool(forKey key: String) -> Bool? {
+        if let rawValue = self[key] {
+            return rawValue == "true"
+        } else {
+            return nil
+        }
+    }
+
+    func string(forKey key: String) -> String? {
+        self[key]
+    }
+
+    func date(forKey key: String, formatter: DateFormatter = .init()) -> Date? {
+        guard let rawDate = self[key] else {
+            return nil
+        }
+
+        return formatter.date(from: rawDate)
     }
 }

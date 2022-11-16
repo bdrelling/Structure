@@ -2,7 +2,7 @@
 
 import Foundation
 
-extension String {
+public extension String {
     func replacing(pattern: String, with replacement: String = "") -> String {
         do {
             let regex = try NSRegularExpression(pattern: pattern, options: [.caseInsensitive, .anchorsMatchLines])

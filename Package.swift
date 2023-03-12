@@ -13,11 +13,11 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/bdrelling/PlotVapor", from: "0.5.0"),
         .package(url: "https://github.com/JohnSundell/Ink", from: "0.5.1"),
-        .package(url: "https://github.com/swift-kipple/Core", from: "0.10.2"),
-        .package(url: "https://github.com/vapor/vapor", from: "4.65.1"),
-        .package(url: "https://github.com/vapor/fluent", from: "4.5.0"),
+        .package(url: "https://github.com/swift-kipple/Core", from: "0.11.0"),
+        .package(url: "https://github.com/vapor/vapor", from: "4.74.0"),
+        .package(url: "https://github.com/vapor/fluent", from: "4.7.0"),
         // Development
-        .package(url: "https://github.com/swift-kipple/Tools", from: "0.3.6"),
+        .package(url: "https://github.com/swift-kipple/Tools", from: "0.3.7"),
     ],
     targets: [
         .target(
